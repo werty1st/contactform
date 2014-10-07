@@ -1,8 +1,17 @@
+var transporter = require('nodemailer').createTransport();
 
-var nodemailer = require('nodemailer');
+var express = require('express');
+var app = express();
+    app.enable('trust proxy');
+    
+    app.use('/',express.static(__dirname+'/client'));
+
+
+// var server = app.listen(process.env.PORT || 3000, function() {
+//     console.log('Listening on port %d', server.address().port);
+// });
 
 // create reusable transporter object using SMTP transport
-var transporter = nodemailer.createTransport();
 
 // NB! No need to recreate the transporter object. You can use
 // the same transporter object for all e-mails
@@ -16,11 +25,16 @@ var mailOptions = {
     html: '<b>Hello world ✔</b>' // html body
 };
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
-});
+
+function sendmail(){	
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        console.log(error);
+	    }else{
+	        console.log('Message sent: ' , info);
+	    }
+	});
+}
+
+sendmail();
