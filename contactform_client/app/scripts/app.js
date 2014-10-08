@@ -30,25 +30,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  }).factory('mail', function() {
-    var result = false;
-    var id = "";
-    var myMailService = {};
-
-    myMailService.setResult = function(msg) {
-        result = msg;
-    };
-    myMailService.setId = function(msg) {
-        id = msg;
-    };
-
-    myMailService.getId = function() {
-        return id;
-    };
-
-    myMailService.getResult = function() {
-        return result;
-    };
-
-    return myMailService;
-});
+  });

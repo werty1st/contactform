@@ -8,20 +8,18 @@
  * Controller of the contactform2App
  */
 angular.module('contactform2App')
-  .controller('ResultCtrl', function ($scope, mail) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    $scope.result = mail.getResult();
-    $scope.id = mail.getId();
+  .controller('ResultCtrl', function ($scope, mailService) {
+    
+    //console.log(mailService);
 
-    if($scope.result){
-    	$scope.note = "Vielen Dank.";
-    } else {
-    	$scope.note = "Entschuldigung";    	
-    }
+    // $scope.result = mail.getResult();
+    // $scope.id = mail.getId();
+
+    // if($scope.result){
+    // 	$scope.note = "Vielen Dank.";
+    // } else {
+    // 	$scope.note = "Entschuldigung";    	
+    // }
  
 
   });

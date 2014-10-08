@@ -8,29 +8,38 @@
  * Controller of the contactform2App
  */
 angular.module('contactform2App')
-  .controller('MainCtrl',function ($scope, $window, mail) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    .controller('MainCtrl',function ($scope, $window, mailService, $timeout) {
+    
+        $scope.user = {};
+        //$scope.form = {"emailSent":false};
+        $scope.form = {};
+        $scope.form.sending = false;
+    	
 
-	$scope.form = {"emailSent":false};
-	
 
-    $scope.sendMail = function sendMail(){
-    	if ($scope.form.$invalid){
-    		mail.setResult(false);
-    	} else {
-    		console.log($scope.user.name, $scope.user.email, $scope.user.message);
-    		$scope.form.emailSent = true;
-    		mail.setResult(true);
-    		mail.setId("#IDXFZEHDKFIF");
-    		$scope.greeter = "Vielen Dank.";
-    		$window.location.href = '#/result';
-    	}
-    }
-  });
+
+        $scope.sendMail = function sendMail(){
+            console.log("clicked");
+
+            if ($scope.form.sending || $scope.form.$invalid) return;
+
+            $scope.form.sending = true;
+
+            mailService.sendMail($scope.user)
+                .success(function(data){
+                    //$scope.form.sending = false;
+                    console.log("success: ", data);
+                    $scope.form.sending = false;                    
+                })
+                .error(function(data){
+                    //$scope.form.sending = false;
+                    console.log("error: ", data);
+                    $scope.form.sending = false;                    
+                });
+
+
+        }
+    });
 
 
 //mailservice

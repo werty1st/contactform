@@ -1,0 +1,13 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git/**",
+    "node_modules/**",
+    "contactform_client/**"
+  ],
+  "verbose": false,
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json"
+}
